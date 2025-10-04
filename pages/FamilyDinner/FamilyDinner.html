@@ -527,6 +527,34 @@
             transform: translateX(-50%) scale(0.98);
         }
 
+        /* The End button */
+        .end-button {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            background: linear-gradient(135deg, #ff4757 0%, #ff3742 100%);
+            color: white;
+            border: 3px solid #c44569;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .end-button:hover {
+            background: linear-gradient(135deg, #ff3742 0%, #ff2f43 100%);
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 71, 87, 0.4);
+        }
+
+        .end-button:active {
+            transform: scale(0.98);
+        }
+
         /* Story modal */
         .story-modal {
             position: fixed;
@@ -786,9 +814,14 @@
             <div class="name-tag">Ravi</div>
         </div>
 
-        <!-- Story Button -->
+        <!-- Story Button (Center) -->
         <button class="story-button" onclick="openStory()">
             ⭐ Hear Grandfather's Historical Space Weather Stories ⭐
+        </button>
+
+        <!-- The End Button (Bottom Right) -->
+        <button class="end-button" onclick="goToEnd()">
+            🌟 The End
         </button>
 
         <!-- Story Modal -->

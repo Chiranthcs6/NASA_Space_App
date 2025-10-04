@@ -3,6 +3,10 @@ function goBackToFamilyDinner() {
     window.location.href = '../Kiran/Sol.html';
 }
 
+function goToEnd() {
+    window.location.href = '../LastPage/LastPage.html';
+}
+
 function openStory() {
     document.getElementById('storyModal').classList.add('active');
 }
