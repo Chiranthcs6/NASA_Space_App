@@ -1,38 +1,64 @@
-// Skywave page specific functionality
+/**
+ * Captain Skywave page specific functionality
+ * Optimized for performance and maintainability
+ */
+
+// Modal configuration constants
+const LANDING_MODAL_CONFIG = {
+    background: 'linear-gradient(to bottom, #87CEEB 0%, #98FB98 100%)',
+    boxBackground: 'rgba(255,255,255,0.95)',
+    boxBorder: '3px solid #1E90FF',
+    boxShadow: '0 0 30px rgba(30,144,255,0.5)',
+    zIndex: 1000
+};
+
+/**
+ * Navigate back to Earth page
+ */
 function goBackToEarth() {
-    window.location.href = '../Earth/Earth.html';
+    navigateToPage('../Earth/Earth.html');
 }
 
+/**
+ * Continue adventure with confirmation dialog
+ */
 function continueAdventure() {
     if (confirm('🌍 Ready to check on other family members?\n\nSee how the solar flare affects Grandpa, Professor Pixel, or Kiran!')) {
-        window.location.href = '../Earth/Earth.html';
+        navigateToPage('../Earth/Earth.html');
     }
 }
 
-function watchLanding() {
-    // Create emergency landing simulation
-    let modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.top = 0;
-    modal.style.left = 0;
-    modal.style.width = '100vw';
-    modal.style.height = '100vh';
-    modal.style.background = 'linear-gradient(to bottom, #87CEEB 0%, #98FB98 100%)';
-    modal.style.display = 'flex';
-    modal.style.alignItems = 'center';
-    modal.style.justifyContent = 'center';
-    modal.style.zIndex = 1000;
+/**
+ * Create emergency landing modal with optimized styling
+ */
+function createLandingModal() {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: ${LANDING_MODAL_CONFIG.background};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: ${LANDING_MODAL_CONFIG.zIndex};
+    `;
     
-    let landingBox = document.createElement('div');
-    landingBox.style.background = 'rgba(255,255,255,0.95)';
-    landingBox.style.border = '3px solid #1E90FF';
-    landingBox.style.color = '#333';
-    landingBox.style.padding = '40px 50px';
-    landingBox.style.borderRadius = '24px';
-    landingBox.style.boxShadow = '0 0 30px rgba(30,144,255,0.5)';
-    landingBox.style.fontSize = '1.3em';
-    landingBox.style.textAlign = 'center';
-    landingBox.style.maxWidth = '600px';
+    const landingBox = document.createElement('div');
+    landingBox.style.cssText = `
+        background: ${LANDING_MODAL_CONFIG.boxBackground};
+        border: ${LANDING_MODAL_CONFIG.boxBorder};
+        color: #333;
+        padding: 40px 50px;
+        border-radius: 24px;
+        box-shadow: ${LANDING_MODAL_CONFIG.boxShadow};
+        font-size: 1.3em;
+        text-align: center;
+        max-width: 600px;
+    `;
+    
     landingBox.innerHTML = `
         <div style="font-size: 3em; margin-bottom: 15px;">✈️</div>
         <h2 style="color: #1E90FF; margin-bottom: 20px;">Emergency Landing in Progress...</h2>
@@ -50,19 +76,35 @@ function watchLanding() {
             "Sometimes the best technology is a skilled pilot's experience and training!"<br>
             - Captain Skywave
         </p>
-        <button onclick='closeLanding()' style='margin-top:20px; padding:12px 30px; background:#1E90FF; color:white; border:none; border-radius:20px; cursor:pointer; font-weight:bold; font-size:1.1em;'>Continue</button>
+        <button id="closeLandingBtn" style="margin-top:20px; padding:12px 30px; background:#1E90FF; color:white; border:none; border-radius:20px; cursor:pointer; font-weight:bold; font-size:1.1em;">Continue</button>
     `;
     
     modal.appendChild(landingBox);
     document.body.appendChild(modal);
     
-    // Add close function
-    window.closeLanding = function() {
+    // Add event listener with proper cleanup
+    const closeBtn = landingBox.querySelector('#closeLandingBtn');
+    closeBtn.addEventListener('click', () => {
         document.body.removeChild(modal);
-    };
+    });
+    
+    return modal;
 }
 
-// Initialize skywave page
+/**
+ * Watch emergency landing simulation
+ */
+function watchLanding() {
+    createLandingModal();
+}
+
+/**
+ * Initialize Captain Skywave page with proper error handling
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    setProgress(100);
+    try {
+        setProgress(100);
+    } catch (error) {
+        console.error('Captain Skywave page initialization error:', error);
+    }
 });

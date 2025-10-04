@@ -1,9 +1,22 @@
-// Ravi page specific functionality
+/**
+ * Ravi page specific functionality
+ * Optimized for performance and maintainability
+ */
+
+/**
+ * Navigate to family page with error handling
+ */
 function continueStory() {
-    window.location.href = '../Family/Family.html';
+    navigateToPage('../Family/Family.html');
 }
 
-// Initialize Ravi page
+/**
+ * Initialize Ravi page with proper error handling
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    setProgress(25);
+    try {
+        setProgress(25);
+    } catch (error) {
+        console.error('Ravi page initialization error:', error);
+    }
 });

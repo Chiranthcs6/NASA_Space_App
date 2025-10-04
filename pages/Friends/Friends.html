@@ -12,8 +12,10 @@
     </div>
 
     <div class="slide active">
-        <button class="back-btn" onclick="navigateToFamily()">Back</button>
-        <div class="star-bg">
+        <nav>
+            <button class="back-btn" onclick="navigateToFamily()" aria-label="Return to family page">Back</button>
+        </nav>
+        <div class="star-bg" aria-hidden="true">
             <span class="fancy-star fancy-star1" style="top:-50px;left:-40px;">⭐</span>
             <span class="fancy-star fancy-star2">⭐</span>
             <span class="fancy-star fancy-star3">⭐</span>
@@ -30,22 +32,24 @@
             <span class="little-star" style="top:89vh;left:81vw;">★</span>
         </div>
         <div class="pbar-top" style="position:relative;z-index:2;"></div>
-        <div class="magic-con">
-            <div class="magic-title">Ravi's Magical Friends</div>
-            <div class="magic-card orange" tabindex="0">
-                <div class="card-title">☀️ Sunny</div>
-                <div>Controls the Sun and sometimes sneezes solar flares!</div>
-            </div>
-            <div class="magic-card white" tabindex="0">
-                <div class="card-title">🛡️ Maggie</div>
-                <div>Protects Earth with her invisible magnetic shield</div>
-            </div>
-            <div class="magic-card pink" tabindex="0">
-                <div class="card-title">🌈 Aurora</div>
-                <div>Paints beautiful colorful lights across the night sky...</div>
-            </div>
-            <button class="super-btn" onclick="navigateToSun()">Start Adventure</button>
-        </div>
+        <main class="magic-con">
+            <header class="magic-title">Ravi's Magical Friends</header>
+            <section class="friends-list" role="list">
+                <article class="magic-card orange" tabindex="0" role="listitem">
+                    <h2 class="card-title">☀️ Sunny</h2>
+                    <p>Controls the Sun and sometimes sneezes solar flares!</p>
+                </article>
+                <article class="magic-card white" tabindex="0" role="listitem">
+                    <h2 class="card-title">🛡️ Maggie</h2>
+                    <p>Protects Earth with her invisible magnetic shield</p>
+                </article>
+                <article class="magic-card pink" tabindex="0" role="listitem">
+                    <h2 class="card-title">🌈 Aurora</h2>
+                    <p>Paints beautiful colorful lights across the night sky...</p>
+                </article>
+            </section>
+            <button class="super-btn" onclick="navigateToSun()" aria-label="Start the space adventure with Sunny">Start Adventure</button>
+        </main>
     </div>
 
     <script src="/assets/js/main.js"></script>

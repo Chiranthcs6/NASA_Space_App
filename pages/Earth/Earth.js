@@ -1,68 +1,64 @@
-// Earth page specific functionality
+/**
+ * Earth page specific functionality
+ * Optimized for performance and maintainability
+ */
+
+// Character navigation mapping for better maintainability
+const characterRoutes = {
+    grandpa: '../Grandpa/Grandpa.html',
+    skywave: '../Captian/Captian.html',
+    professor: '../ProfessorClass/ProfessorClass.html',
+    kiran: '../Kiran/Kiran.html'
+};
+
+/**
+ * Navigate back to Sun page
+ */
 function goBackToSun() {
-    window.location.href = '../Sun/Sun.html';
+    navigateToPage('../Sun/Sun.html');
 }
 
+/**
+ * Follow a specific character with optimized routing
+ * @param {string} character - Character name to follow
+ */
 function followCharacter(character) {
-    console.log('followCharacter called with:', character);
+    console.log('Following character:', character);
     
-    let message = '';
-    let nextAction = '';
+    // Validate input
+    if (!character || typeof character !== 'string') {
+        console.error('Invalid character parameter:', character);
+        alert('Please choose a valid character to follow!');
+        return;
+    }
     
-    switch(character) {
-        case 'grandpa':
-            console.log('Grandpa case matched - attempting redirect...');
-            try {
-                window.location.href = '../Grandpa/Grandpa.html';
-                console.log('Redirect command sent');
-            } catch (error) {
-                console.error('Redirect error:', error);
-                alert('Error: Could not redirect to Grandpa page. Check if Grandpa/Grandpa.html exists.');
-            }
-            return;
-            
-        case 'skywave':
-            console.log('Skywave case matched - attempting redirect...');
-            try {
-                window.location.href = '../Captian/Captian.html';  // CORRECT: Points to Captain folder with Captain.html
-                console.log('Redirect to Skywave/Captain sent');
-            } catch (error) {
-                console.error('Redirect error:', error);
-                alert('Error: Could not redirect to Captain page. Check if Captian/Captian.html exists.');
-            }
-            return;
-            
-        case 'professor':
-            console.log('Professor case matched - attempting redirect...');
-            try {
-                window.location.href = '../ProfessorClass/ProfessorClass.html';  // UPDATED: Redirect to Professor page
-                console.log('Redirect to Professor sent');
-            } catch (error) {
-                console.error('Redirect error:', error);
-                alert('Error: Could not redirect to Professor page. Check if Professor/Professor.html exists.');
-            }
-            return;
-            
-        case 'kiran':
-            console.log('Kiran case matched - attempting redirect...');
-            try {
-                window.location.href = '../Kiran/Kiran.html';  // UPDATED: Redirect to Communication page
-                console.log('Redirect to Communication sent');
-            } catch (error) {
-                console.error('Redirect error:', error);
-                alert('Error: Could not redirect to Communication page. Check if Communication/Communication.html exists.');
-            }
-            return;
-            
-        default:
-            console.log('Unknown character:', character);
-            alert('Choose a character to follow!');
-            return;
+    // Get route from mapping
+    const route = characterRoutes[character.toLowerCase()];
+    
+    if (!route) {
+        console.error('Unknown character:', character);
+        alert('Choose a character to follow!');
+        return;
+    }
+    
+    // Navigate with error handling
+    try {
+        console.log(`Navigating to ${character} page:`, route);
+        navigateToPage(route);
+    } catch (error) {
+        console.error('Navigation error for character:', character, error);
+        alert(`Error: Could not navigate to ${character} page. Please try again.`);
     }
 }
 
-// Initialize Earth page
+/**
+ * Initialize Earth page with proper error handling
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Earth page loaded');
-    setProgress(100);
+    try {
+        console.log('Earth page loaded');
+        setProgress(100);
+    } catch (error) {
+        console.error('Earth page initialization error:', error);
+    }
 });

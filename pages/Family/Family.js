@@ -1,9 +1,22 @@
-// Family page specific functionality
+/**
+ * Family page specific functionality
+ * Optimized for performance and maintainability
+ */
+
+/**
+ * Navigate to friends page with error handling
+ */
 function navigateToFriends() {
-    window.location.href = '../Friends/Friends.html';
+    navigateToPage('../Friends/Friends.html');
 }
 
-// Initialize family page
+/**
+ * Initialize family page with proper error handling
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    setProgress(63);
+    try {
+        setProgress(63);
+    } catch (error) {
+        console.error('Family page initialization error:', error);
+    }
 });

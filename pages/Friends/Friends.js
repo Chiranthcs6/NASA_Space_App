@@ -1,13 +1,29 @@
-// Friends page specific functionality
+/**
+ * Friends page specific functionality
+ * Optimized for performance and maintainability
+ */
+
+/**
+ * Navigate to family page with error handling
+ */
 function navigateToFamily() {
-    window.location.href = '../Family/Family.html';
+    navigateToPage('../Family/Family.html');
 }
 
+/**
+ * Navigate to sun page with error handling
+ */
 function navigateToSun() {
-    window.location.href = '../Sun/Sun.html';
+    navigateToPage('../Sun/Sun.html');
 }
 
-// Initialize friends page
+/**
+ * Initialize friends page with proper error handling
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    setProgress(100);
+    try {
+        setProgress(100);
+    } catch (error) {
+        console.error('Friends page initialization error:', error);
+    }
 });

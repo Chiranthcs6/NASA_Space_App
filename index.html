@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Space Adventure Interactive Story</title>
   <link rel="stylesheet" href="/assets/css/styles.css">
  
@@ -134,16 +135,18 @@
 </head>
 <body>
   <div class="space-bg">
-    <canvas id="solar-canvas"></canvas>
-    <div class="center-box">
+    <canvas id="solar-canvas" aria-label="Animated solar system background"></canvas>
+    <main class="center-box">
       <h1>Let's go on a Space Adventure!!</h1>
       <p class="subtitle">An Interactive Story</p>
-      <button class="story-btn" onclick="startAdventure('yes')">YES :)</button>
-      <button class="story-btn" onclick="startAdventure('no')">NO :(</button>
-    </div>
-    <div class="planet-box">
+      <div class="buttons-container">
+        <button class="story-btn" onclick="startAdventure('yes')" aria-label="Start the space adventure">YES :)</button>
+        <button class="story-btn" onclick="startAdventure('no')" aria-label="Decline the space adventure">NO :(</button>
+      </div>
+    </main>
+    <aside class="planet-box">
       <img src="/assets/images/space-parts.png" alt="Space Parts" onerror="this.style.display='none'" />
-    </div>
+    </aside>
   </div>
   <script src="/assets/js/main.js"></script>
 </body>

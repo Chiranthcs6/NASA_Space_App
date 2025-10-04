@@ -1,14 +1,29 @@
-// Kiran page specific functionality
+/**
+ * Kiran page specific functionality
+ * Optimized for performance and maintainability
+ */
+
+/**
+ * Navigate back to Earth page
+ */
 function goBackToEarth() {
-    window.location.href = '../Earth/Earth.html';
+    navigateToPage('../Earth/Earth.html');
 }
 
+/**
+ * Navigate to SpaceDemo page to help Kiran
+ */
 function helpKiran() {
-    // Direct redirect to SpaceDemo page
-    window.location.href = 'SpaceDemo.html';
+    navigateToPage('SpaceDemo.html');
 }
 
-// Initialize Kiran page
+/**
+ * Initialize Kiran page with proper error handling
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    setProgress(100);
+    try {
+        setProgress(100);
+    } catch (error) {
+        console.error('Kiran page initialization error:', error);
+    }
 });

@@ -12,24 +12,26 @@
     </div>
 
     <div class="slide active">
-        <button class="back-btn" onclick="navigateToFriends()">Back</button>
-        <div class="story-section" id="section3">
-            <div class="sneeze-header">🤧 Sunny's Big Sneeze!</div>
-            <div class="sneeze-desc">One sunny morning, Sunny felt a big sneeze coming on...</div>
-            <div class="sneeze-anim" id="sneezeAnim">
-                <span class="sun-face" id="sunFace">🌞</span>
-                <span class="sneeze-cloud" id="sneezeCloud">💨</span>
-                <span class="blast-flare" id="flareBlast"></span>
+        <nav>
+            <button class="back-btn" onclick="navigateToFriends()" aria-label="Return to friends page">Back</button>
+        </nav>
+        <main class="story-section" id="section3">
+            <header class="sneeze-header">🤧 Sunny's Big Sneeze!</header>
+            <p class="sneeze-desc">One sunny morning, Sunny felt a big sneeze coming on...</p>
+            <div class="sneeze-anim" id="sneezeAnim" aria-label="Sunny the sun character">
+                <span class="sun-face" id="sunFace" aria-hidden="true">🌞</span>
+                <span class="sneeze-cloud" id="sneezeCloud" aria-hidden="true">💨</span>
+                <span class="blast-flare" id="flareBlast" aria-hidden="true"></span>
             </div>
-            <button class="choice-btn" id="sneezeBtn" onclick="doSunSneeze()">Help Sunny Sneeze! 😷</button>
-            <div class="effects-panel" id="sneezeResult" style="display:none;">
+            <button class="choice-btn" id="sneezeBtn" onclick="doSunSneeze()" aria-label="Help Sunny sneeze to create a solar flare">Help Sunny Sneeze! 😷</button>
+            <section class="effects-panel" id="sneezeResult" style="display:none;">
                 <h3>⚡ SOLAR FLARE ALERT! ⚡</h3>
                 <p>"Ah... ah... ah... ACHOO!" WHOOSH! A massive solar flare shot out from the Sun, racing toward Earth!</p>
-            </div>
-            <button class="next-earth-btn" id="nextEarthBtn" onclick="showEffects()" style="display:none;">
+            </section>
+            <button class="next-earth-btn" id="nextEarthBtn" onclick="showEffects()" style="display:none;" aria-label="Continue to see the effects on Earth">
                 🌍 See What Happens on Earth!
             </button>
-        </div>
+        </main>
     </div>
 
     <script src="/assets/js/main.js"></script>

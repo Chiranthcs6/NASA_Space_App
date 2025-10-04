@@ -277,24 +277,28 @@
   </style>
 </head>
 <body>
-  <button class="back-btn" onclick="goHome()">Back</button>
-  <div class="aurora-bg">
+  <nav>
+    <button class="back-btn" onclick="goHome()" aria-label="Return to main page">Back</button>
+  </nav>
+  <div class="aurora-bg" aria-hidden="true">
     <div class="aurora"></div>
     <div class="aurora aurora2"></div>
     <div class="aurora aurora3"></div>
   </div>
-  <div class="main-content">
-    <!-- Updated: Using actual Canada map image -->
-    <img class="map-img" src="/assets/images/canada_map.png" alt="Canada Map with Yellowknife" onerror="this.outerHTML='<div class=\'map-img\' style=\'background: linear-gradient(135deg, #4CAF50, #45a049); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em; font-weight: bold; text-align: center; height: 300px;\'>🍁 Canada Map<br/>📍 Yellowknife</div>'">
-    <div class="right-block">
-      <div class="speech-bubble">
+  <main class="main-content">
+    <figure>
+      <img class="map-img" src="/assets/images/canada_map.png" alt="Map of Canada showing Yellowknife location" onerror="this.outerHTML='<div class=\'map-img\' style=\'background: linear-gradient(135deg, #4CAF50, #45a049); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em; font-weight: bold; text-align: center; height: 300px;\'>🍁 Canada Map<br/>📍 Yellowknife</div>'">
+    </figure>
+    <section class="right-block">
+      <blockquote class="speech-bubble">
         Once upon a time, in a small town called Yellowknife in Canada, lived a curious boy named Ravi. He came from a very special family where everyone had exciting jobs that connected them to the sky and space.
-      </div>
-      <!-- Using the boy character image -->
-      <img class="boy-img" src="/assets/images/boy.png" alt="Ravi - Small Boy Character">
-      <button class="continue-btn" onclick="continueStory()">Meet His Family!</button>
-    </div>
-  </div>
+      </blockquote>
+      <figure>
+        <img class="boy-img" src="/assets/images/boy.png" alt="Ravi - A curious young boy character">
+      </figure>
+      <button class="continue-btn" onclick="continueStory()" aria-label="Continue to meet Ravi's family">Meet His Family!</button>
+    </section>
+  </main>
 
   <script src="/assets/js/main.js"></script>
   <script src="Ravi.js"></script>
