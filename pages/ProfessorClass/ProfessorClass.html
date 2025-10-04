@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Pixel's Online Class</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .classroom-container {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .class-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #10b981;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .main-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .video-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .professor-video {
+            background: #1a1a2e;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            height: 70%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-frame {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #2d3561 0%, #1a1a2e 100%);
+        }
+
+        .professor-character {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .prof-head {
+            width: 120px;
+            height: 120px;
+            background: #ffd1a3;
+            border-radius: 50%;
+            position: absolute;
+            left: 40px;
+            top: 0;
+            border: 4px solid #f4a460;
+        }
+
+        .prof-glasses {
+            width: 80px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid #333;
+            border-radius: 8px;
+            position: absolute;
+            left: 60px;
+            top: 50px;
+        }
+
+        .prof-body {
+            width: 140px;
+            height: 100px;
+            background: #4a90e2;
+            position: absolute;
+            left: 30px;
+            top: 110px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .prof-arm {
+            width: 60px;
+            height: 20px;
+            background: #4a90e2;
+            position: absolute;
+            top: 130px;
+            border-radius: 10px;
+        }
+
+        .prof-arm.left {
+            left: -10px;
+            transform: rotate(-30deg);
+        }
+
+        .prof-arm.right {
+            right: -10px;
+            transform: rotate(30deg);
+        }
+
+        .pointer {
+            width: 4px;
+            height: 60px;
+            background: #8b4513;
+            position: absolute;
+            left: 50%;
+            top: 200px;
+            transform-origin: top;
+            animation: point 2s infinite;
+        }
+
+        @keyframes point {
+            0%, 100% { transform: translateX(-50%) rotate(-15deg); }
+            50% { transform: translateX(-50%) rotate(15deg); }
+        }
+
+        .speech-bubble {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            position: relative;
+            max-width: 500px;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid white;
+        }
+
+        .speech-text {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .glitch-text {
+            animation: text-glitch 0.3s infinite;
+            color: #ff0000;
+        }
+
+        @keyframes text-glitch {
+            0% { transform: translate(0); opacity: 1; }
+            25% { transform: translate(-2px, 2px); opacity: 0.8; }
+            50% { transform: translate(2px, -2px); opacity: 0.6; }
+            75% { transform: translate(-2px, -2px); opacity: 0.9; }
+            100% { transform: translate(0); opacity: 1; }
+        }
+
+        .video-static {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.05) 2px,
+                rgba(255, 255, 255, 0.05) 4px
+            );
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .presentation-slide {
+            background: white;
+            border-radius: 12px;
+            height: 30%;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .solar-diagram {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .sun-icon {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ffcc00, #ff6600);
+            border-radius: 50%;
+            box-shadow: 0 0 20px #ff6600;
+            animation: pulse-sun 2s infinite;
+        }
+
+        @keyframes pulse-sun {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); box-shadow: 0 0 30px #ff6600; }
+        }
+
+        .flare-arrow {
+            width: 60px;
+            height: 4px;
+            background: #ff6600;
+            position: relative;
+        }
+
+        .flare-arrow::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: -5px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid #ff6600;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+        }
+
+        .satellite-icon {
+            width: 40px;
+            height: 40px;
+            background: #4a5568;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .satellite-icon::before,
+        .satellite-icon::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background: #3b82f6;
+            top: 5px;
+        }
+
+        .satellite-icon::before { left: -15px; }
+        .satellite-icon::after { right: -15px; }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 15px;
+            height: 40%;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .chat-message {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .chat-message strong {
+            color: #667eea;
+        }
+
+        .student-grid {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 15px;
+            height: 60%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .grid-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .students {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .student {
+            background: #e0e7ff;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .student-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .disrupted {
+            background: #ef4444 !important;
+            color: white;
+        }
+
+        .warning-banner {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(239, 68, 68, 0.95);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            z-index: 20;
+            display: none;
+            animation: blink 0.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .packet-animation {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        /* Button container for proper alignment */
+        .bottom-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            align-items: center;
+        }
+
+        /* Solution button - positioned left of adventure button */
+        .solution-button {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .solution-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(255, 107, 53, 0.6);
+            background: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%);
+        }
+
+        .solution-button:active {
+            transform: translateY(-1px);
+        }
+
+        .solution-icon {
+            font-size: 18px;
+            animation: pulse-icon 2s infinite;
+        }
+
+        @keyframes pulse-icon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Adventure button - positioned right */
+        .adventure-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .adventure-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .adventure-button:active {
+            transform: translateY(-1px);
+        }
+
+        .button-arrow {
+            font-size: 20px;
+            animation: arrow-bounce 1s infinite;
+        }
+
+        @keyframes arrow-bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        /* Progress bar */
+        .progress-bar-real {
+            width: 100vw;
+            height: 18px;
+            background: #242535;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 200;
+            box-shadow: 0 7px 18px #FFD93D23;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #e046b7 5%, #FF2E63 65%, #FFD93D 95%);
+            border-radius: 5px;
+            box-shadow: 0 0 12px #FFD93D80;
+        }
+
+        /* Back button - FIXED */
+        .back-btn {
+            position: fixed !important;
+            top: 30px !important;
+            left: 30px !important;
+            z-index: 300 !important;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: 2px solid #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .back-btn::before {
+            content: "← ";
+            margin-right: 5px;
+        }
+
+        .back-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .bottom-buttons {
+                bottom: 20px;
+                right: 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .solution-button,
+            .adventure-button {
+                padding: 14px 25px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar-real">
+        <div class="progress-bar-fill" id="progressbar"></div>
+    </div>
+
+    <button class="back-btn" onclick="goBackToEarth()">Back</button>
+
+    <div class="classroom-container">
+        <div class="header">
+            <div class="class-title">🎓 Professor Pixel's Solar Physics Class</div>
+            <div class="connection-status" id="status">
+                <div class="status-dot"></div>
+                <span>Connected</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="video-section">
+                <div class="professor-video">
+                    <div class="warning-banner" id="warning">⚠ SOLAR STORM DETECTED - SIGNAL DISRUPTED</div>
+                    <div class="video-static" id="static"></div>
+                    <div class="video-frame" id="videoFrame">
+                        <div class="professor-character">
+                            <div class="prof-head"></div>
+                            <div class="prof-glasses"></div>
+                            <div class="prof-body"></div>
+                            <div class="prof-arm left"></div>
+                            <div class="prof-arm right"></div>
+                            <div class="pointer"></div>
+                        </div>
+                        <div class="speech-bubble">
+                            <div class="speech-text" id="speech">
+                                Today we're going to learn about the solar flare effects on satellite communications...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="presentation-slide">
+                    <div class="slide-title">Solar Storm Impact on Communications</div>
+                    <div class="solar-diagram">
+                        <div class="sun-icon"></div>
+                        <div class="flare-arrow"></div>
+                        <div class="satellite-icon"></div>
+                        <div class="flare-arrow"></div>
+                        <span style="font-size: 30px;">🌍</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="chat-box">
+                    <div class="chat-title">💬 Live Chat</div>
+                    <div class="chat-message"><strong>Alex:</strong> Good morning Professor!</div>
+                    <div class="chat-message"><strong>Maya:</strong> Ready to learn! 📚</div>
+                    <div class="chat-message"><strong>Sam:</strong> This topic sounds interesting</div>
+                    <div class="chat-message" id="chatDisruption" style="display: none; background: #fee; color: #c00;">
+                        <strong>System:</strong> Connection unstable...
+                    </div>
+                </div>
+
+                <div class="student-grid">
+                    <div class="grid-title">👥 Students Online (8)</div>
+                    <div class="students">
+                        <div class="student"><div class="student-avatar">A</div>Alex</div>
+                        <div class="student"><div class="student-avatar">M</div>Maya</div>
+                        <div class="student"><div class="student-avatar">S</div>Sam</div>
+                        <div class="student"><div class="student-avatar">J</div>Jordan</div>
+                        <div class="student"><div class="student-avatar">T</div>Taylor</div>
+                        <div class="student"><div class="student-avatar">R</div>Riley</div>
+                        <div class="student"><div class="student-avatar">C</div>Casey</div>
+                        <div class="student"><div class="student-avatar">P</div>Pat</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-buttons">
+        <button class="solution-button" onclick="showSolution()">
+            <span class="solution-icon">💡</span>
+            View Solution
+        </button>
+
+        <button class="adventure-button" onclick="nextAdventure()">
+            Continue to Next Adventure
+            <span class="button-arrow">→</span>
+        </button>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="ProfessorClass.js"></script>
+</body>
+</html>

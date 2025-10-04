@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch to hardwired fiber-optic connection</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+        body {
+            background: #111;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+            margin: 40px auto;
+            padding: 30px 20px 40px 20px;
+            background: #13203a;
+            border: 3px solid #000;
+            position: relative;
+            border-radius: 14px;
+            min-height: 540px;
+        }
+
+        .headline {
+            background: #ffe066;
+            color: #282828;
+            font-size: 2em;
+            padding: 18px 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            font-weight: 600;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.06);
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        .subtext {
+            background: #ffe066;
+            color: #404040;
+            padding: 16px 18px 10px 18px;
+            border-radius: 14px;
+            margin-bottom: 36px;
+            font-size: 1.08em;
+            line-height: 1.6;
+            width: 85%;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.06);
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            background: #000;
+            color: #fff;
+            font-size: 1.15em;
+            padding: 14px 28px;
+            border: 3px dashed #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 1px 10px rgba(64,64,64,0.20);
+            transition: 
+                background 0.3s, 
+                color 0.3s, 
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            background: #282828;
+            color: #ffe066;
+            transform: scale(1.09);
+            box-shadow: 0 6px 28px 0 #ffe06644;
+        }
+
+        /* Progress bar */
+        .progress-bar-real {
+            width: 100vw;
+            height: 18px;
+            background: #242535;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 200;
+            box-shadow: 0 7px 18px #FFD93D23;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #e046b7 5%, #FF2E63 65%, #FFD93D 95%);
+            border-radius: 5px;
+            box-shadow: 0 0 12px #FFD93D80;
+        }
+
+        /* Back button */
+        .back-btn {
+            position: absolute;
+            top: -50px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: 2px solid #ffe066;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn::before {
+            content: "← ";
+            margin-right: 5px;
+        }
+
+        .back-btn:hover {
+            background: #ffe066;
+            color: #282828;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar-real">
+        <div class="progress-bar-fill" id="progressbar"></div>
+    </div>
+
+    <div class="container">
+        <button class="back-btn" onclick="goBackToClass()">Back</button>
+        
+        <div class="headline">
+            Switch to hardwired fiber-optic connection<br>
+            <span style="font-size:0.7em;display:block;">Underground cables aren't affected by solar system...</span>
+        </div>
+        
+        <div class="subtext">
+            🎉 Lesson Saved!<br>
+            ✅ Brilliant solution! Professor Pixel connected his computer directly to the fiber-optic cable network. Since these cables are buried underground and don't rely on satellites, the connection was crystal clear! His hologram stabilized instantly. 'Fiber optics are immune to space weather!' he explained to his students.<br>
+            <b>Science Note:</b> Internet disruptions during solar storms mainly affect satellite communications and wireless signals. Wired connections (fiber optic cables, ethernet) are protected underground and work perfectly during space weather events!
+        </div>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="activateAurora()">Activate Aurora's Light show</button>
+            <button class="btn" onclick="nextFamilyMember()">Next Family Member</button>
+        </div>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="ProfSol.js"></script>
+</body>
+</html>

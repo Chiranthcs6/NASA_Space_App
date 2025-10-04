@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronaut Solar Storm Safety</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .space-scene {
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Stars */
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Sun with solar storm */
+        .sun {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #ffeb3b 0%, #ff9800 50%, #ff5722 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px #ff9800, 0 0 100px #ff5722;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Solar storm particles */
+        .solar-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff5722;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff5722;
+            animation: solar-storm 3s linear infinite;
+        }
+
+        @keyframes solar-storm {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(600px, 400px);
+                opacity: 0;
+            }
+        }
+
+        /* ISS */
+        .iss {
+            position: absolute;
+            top: 50%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 100px;
+            transition: all 1s ease;
+        }
+
+        .iss-body {
+            position: absolute;
+            width: 120px;
+            height: 40px;
+            background: linear-gradient(to bottom, #c0c0c0, #808080);
+            border-radius: 10px;
+            left: 40px;
+            top: 30px;
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .solar-panel {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 50%, #1e3a8a 100%);
+            top: 10px;
+        }
+
+        .solar-panel::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #60a5fa;
+            top: 20px;
+        }
+
+        .solar-panel::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #60a5fa;
+            top: 40px;
+        }
+
+        .solar-panel-left {
+            left: 0;
+        }
+
+        .solar-panel-right {
+            right: 0;
+        }
+
+        /* Astronaut */
+        .astronaut {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 1.5s ease;
+        }
+
+        .helmet {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #90caf9 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 3px solid #fff;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .body {
+            width: 40px;
+            height: 45px;
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e0e0e0 100%);
+            border-radius: 10px;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 2px solid #bdbdbd;
+        }
+
+        /* Shelter Module */
+        .shelter {
+            position: absolute;
+            width: 100px;
+            height: 80px;
+            background: linear-gradient(to bottom, #4a5568, #2d3748);
+            border-radius: 15px;
+            left: 70%;
+            top: 40%;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 1s ease;
+            border: 3px solid #805ad5;
+            box-shadow: 0 0 30px rgba(128, 90, 213, 0.6);
+        }
+
+        .shelter.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .shelter::before {
+            content: '🛡️';
+            position: absolute;
+            font-size: 24px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .shield-layer {
+            position: absolute;
+            width: 120px;
+            height: 100px;
+            border: 2px solid rgba(128, 90, 213, 0.5);
+            border-radius: 20px;
+            top: -10px;
+            left: -10px;
+            animation: shield-pulse 2s infinite;
+        }
+
+        @keyframes shield-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* Radiation indicator */
+        .radiation-meter {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #805ad5;
+            color: white;
+            min-width: 250px;
+            box-shadow: 0 0 20px rgba(128, 90, 213, 0.4);
+        }
+
+        .radiation-level {
+            margin-top: 10px;
+            height: 30px;
+            background: #1a202c;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .radiation-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78 0%, #f6e05e 50%, #f56565 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 15px;
+        }
+
+        .radiation-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        /* Info panel */
+        .info-panel {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #4299e1;
+            color: white;
+            max-width: 350px;
+            box-shadow: 0 0 20px rgba(66, 153, 225, 0.4);
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .status-icon {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .timer {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            color: #4299e1;
+            text-shadow: 0 0 10px rgba(66, 153, 225, 0.8);
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .action-btn:disabled {
+            background: #4a5568;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(72, 187, 120, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.5s ease;
+            box-shadow: 0 0 40px rgba(72, 187, 120, 0.8);
+            z-index: 1000;
+        }
+
+        .success-message.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .continue-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.5);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.7);
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .continue-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .science-note {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(66, 153, 225, 0.2);
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            border-left: 4px solid #4299e1;
+        }
+
+        /* Progress bar */
+        .progress-bar-real {
+            width: 100vw;
+            height: 18px;
+            background: #242535;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 200;
+            box-shadow: 0 7px 18px #FFD93D23;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #e046b7 5%, #FF2E63 65%, #FFD93D 95%);
+            border-radius: 5px;
+            box-shadow: 0 0 12px #FFD93D80;
+        }
+
+        /* Back button */
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            border: 2px solid #4299e1;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .back-btn::before {
+            content: "← ";
+            margin-right: 5px;
+        }
+        
+        .back-btn:hover {
+            background: #4299e1;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar-real">
+        <div class="progress-bar-fill" id="progressbar"></div>
+    </div>
+
+    <button class="back-btn" onclick="goBackToKiran()">Back</button>
+
+    <div class="space-scene">
+        <!-- Sun -->
+        <div class="sun"></div>
+
+        <!-- ISS -->
+        <div class="iss">
+            <div class="solar-panel solar-panel-left"></div>
+            <div class="iss-body">
+                <div class="astronaut" id="astronaut">
+                    <div class="helmet"></div>
+                    <div class="body"></div>
+                </div>
+            </div>
+            <div class="solar-panel solar-panel-right"></div>
+        </div>
+
+        <!-- Shelter Module -->
+        <div class="shelter" id="shelter">
+            <div class="shield-layer"></div>
+        </div>
+
+        <!-- Radiation Meter -->
+        <div class="radiation-meter">
+            <div style="font-size: 18px; font-weight: bold;">☢️ Radiation Level</div>
+            <div class="radiation-level">
+                <div class="radiation-bar" id="radiationBar"></div>
+                <div class="radiation-text" id="radiationText">0%</div>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="info-panel">
+            <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px;">🎉 Mission Control</div>
+            <div class="status">
+                <span class="status-icon">👨‍🚀</span>
+                <span id="statusText">Solar storm detected!</span>
+            </div>
+            <div class="timer" id="timer">0:10</div>
+            <button class="action-btn" id="actionBtn" onclick="enterShelter()">
+                Enter Radiation Shelter
+            </button>
+            <div class="science-note">
+                <strong>💡 Science Note:</strong> Astronauts face the greatest danger from solar storms because they're outside Earth's protective atmosphere and magnetic field!
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            ✅ Excellent Safety Decision!<br>
+            🛡️ Astronaut Protected!<br>
+            <button class="continue-btn" onclick="showSolution()" style="margin-top: 25px;">
+                💡 View Solution
+            </button>
+        </div>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="SpaceDemo.js"></script>
+</body>
+</html>
