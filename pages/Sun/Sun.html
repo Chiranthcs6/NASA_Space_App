@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunny's Big Sneeze - Space Adventure</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <div class="progress-bar-real">
+        <div class="progress-bar-fill" id="progressbar"></div>
+    </div>
+
+    <div class="slide active">
+        <button class="back-btn" onclick="navigateToFriends()">Back</button>
+        <div class="story-section" id="section3">
+            <div class="sneeze-header">🤧 Sunny's Big Sneeze!</div>
+            <div class="sneeze-desc">One sunny morning, Sunny felt a big sneeze coming on...</div>
+            <div class="sneeze-anim" id="sneezeAnim">
+                <span class="sun-face" id="sunFace">🌞</span>
+                <span class="sneeze-cloud" id="sneezeCloud">💨</span>
+                <span class="blast-flare" id="flareBlast"></span>
+            </div>
+            <button class="choice-btn" id="sneezeBtn" onclick="doSunSneeze()">Help Sunny Sneeze! 😷</button>
+            <div class="effects-panel" id="sneezeResult" style="display:none;">
+                <h3>⚡ SOLAR FLARE ALERT! ⚡</h3>
+                <p>"Ah... ah... ah... ACHOO!" WHOOSH! A massive solar flare shot out from the Sun, racing toward Earth!</p>
+            </div>
+            <button class="next-earth-btn" id="nextEarthBtn" onclick="showEffects()" style="display:none;">
+                🌍 See What Happens on Earth!
+            </button>
+        </div>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="Sun.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Ravi's Family - Space Adventure</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <div class="progress-bar-real">
+        <div class="progress-bar-fill" id="progressbar"></div>
+    </div>
+
+    <div class="slide active">
+        <button class="back-btn" onclick="goHome()">Back</button>
+        <div class="container">
+            <div class="moon-stars">
+                <span class="star">⭐</span>
+                <span class="star" style="margin-left:17px;">⭐</span>
+                <span class="moon">🌙</span>
+            </div>
+            <div class="main-card">
+                Meet Ravi's Amazing Family! 👨‍👩‍👦
+                <div class="main-card-desc">
+                    In a small town called Yellowknife in Canada lives a curious boy named Ravi. His family has the most exciting jobs connected to space and sky!
+                </div>
+            </div>
+            <div class="family-list">
+                <div class="fam-box green" tabindex="0">
+                    <span class="emoji">🚀</span> <span>Kiran (Big Brother)</span>
+                    <div class="fam-box-desc">Astronaut on the International Space Station</div>
+                </div>
+                <div class="fam-box" tabindex="0">
+                    <span class="emoji">✈️</span> <span>Captain Skywave (Mom)</span>
+                    <div class="fam-box-desc">Flies planes high in the clouds</div>
+                </div>
+                <div class="fam-box" tabindex="0">
+                    <span class="emoji">👨‍🏫</span> <span>Professor Pixel (Dad)</span>
+                    <div class="fam-box-desc">
+                        Teaches students worldwide using hologram screens
+                    </div>
+                </div>
+                <div class="fam-box" tabindex="0">
+                    <span class="emoji">🚜</span> <span>Farmer Orbit (Grandpa)</span>
+                    <div class="fam-box-desc">Grows vegetables using GPS-guided tractors</div>
+                </div>
+            </div>
+            <button class="next-btn" onclick="navigateToFriends()">
+                <span class="space-icon">🌠</span> Meet Ravi's Magical Friends
+            </button>
+        </div>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="Family.js"></script>
+</body>
+</html>

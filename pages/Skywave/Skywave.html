@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Flare Communication Blackout</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+        
+        canvas {
+            display: block;
+            background: radial-gradient(ellipse at center, #0a0a1a 0%, #000000 100%);
+        }
+        
+        .hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #0f0;
+            font-size: 14px;
+            text-shadow: 0 0 10px #0f0;
+            z-index: 10;
+        }
+        
+        .status {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #0f0;
+        }
+        
+        .warning {
+            color: #ff0;
+            animation: blink 1s infinite;
+        }
+        
+        .critical {
+            color: #f00;
+            animation: blink 0.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        .comms {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #0f0;
+            padding: 15px;
+            color: #0f0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .next-button {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 40px;
+            font-size: 18px;
+            font-family: 'Courier New', monospace;
+            background: #0f0;
+            color: #000;
+            border: 3px solid #0f0;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px #0f0;
+        }
+        
+        .next-button.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .next-button:hover {
+            background: #000;
+            color: #0f0;
+            box-shadow: 0 0 30px #0f0;
+        }
+        
+        .message {
+            margin: 5px 0;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .static {
+            color: #888;
+            font-weight: bold;
+        }
+
+        /* Back button */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: 2px solid #f00;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #f00;
+            box-shadow: 0 0 20px #f00;
+        }
+
+        /* Progress bar */
+        .progress-bar-real {
+            width: 100vw;
+            height: 18px;
+            background: #242535;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 200;
+            box-shadow: 0 7px 18px #FFD93D23;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #e046b7 5%, #FF2E63 65%, #FFD93D 95%);
+            border-radius: 5px;
+            box-shadow: 0 0 12px #FFD93D80;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar-real">
+        <div class="progress-bar-fill" id="progressbar"></div>
+    </div>
+
+    <button class="back-btn" onclick="goBackToEarth()">← Back</button>
+    
+    <div class="hud">
+        <div class="status">
+            <div>SIGNAL STRENGTH: <span id="signal">100%</span></div>
+            <div>STATUS: <span id="status">NOMINAL</span></div>
+        </div>
+    </div>
+    
+    nvas id="canvasvas"></canvas>
+    
+    <div class="comms" id="comms"></div>
+    
+    <button class="next-button" id="nextBtn" onclick="nextAdventure()">Continue to the next adventure</button>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="Communication.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Space Adventure Interactive Story</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+ 
+ <style>
+    /* Main page specific styles */
+    html, body {
+      margin: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+    .space-bg {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+    #solar-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      display: block;
+      background: #000;
+    }
+    .center-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      text-align: center;
+      margin: auto;
+      margin-top: 70px;
+      width: 560px;
+      padding: 30px;
+      border-radius: 25px;
+    }
+    h1 {
+      font-size: 3em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      margin-bottom: 30px;
+      font-size: 1.3em;
+      color: #ccc;
+    }
+    /* Stylish Space-Themed Buttons */
+    .story-btn {
+      position: relative;
+      display: block;
+      width: 320px;
+      margin: 24px auto 0 auto;
+      padding: 18px 0;
+      background: linear-gradient(90deg, #22223b, #4a47a3 60%, #26d0ce);
+      color: #fff;
+      font-size: 1.6em;
+      font-weight: bold;
+      border: none;
+      border-radius: 38px;
+      box-shadow: 0 6px 32px 0 rgba(66,133,244,0.24), 0 2px 8px 0 #0ff3;
+      outline: none;
+      cursor: pointer;
+      overflow: hidden;
+      transition: 
+        box-shadow 0.25s,
+        transform 0.18s,
+        background 0.3s;
+    }
+    .story-btn:before {
+      content: "";
+      position: absolute;
+      top: 50%; left: 20px;
+      width: 34px; height: 7px;
+      background: linear-gradient(90deg, #fffbe6 40%, #eebf55 100%);
+      border-radius: 7px;
+      box-shadow: 0 0 10px 3px #fed67499;
+      opacity: 0.6;
+      transform: translateY(-50%) scale(0.7);
+      transition: transform 0.3s cubic-bezier(.8,.3,.2,1.4), opacity 0.3s;
+    }
+    .story-btn:hover {
+      background: linear-gradient(90deg, #25264f, #2833fa 70%, #73e4f3 100%);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 32px 0 #3658a799, 0 2px 12px 0 #fff7;
+    }
+    .story-btn:hover:before {
+      left: 260px;
+      opacity: 1;
+      transform: translateY(-50%) scale(1.37);
+    }
+    .story-btn:after {
+      content: "★";
+      font-size: 1em;
+      color: #ffe761;
+      position: absolute;
+      right: 34px;
+      top: 52%;
+      transform: translateY(-52%) scale(1.2);
+      text-shadow: 0 0 10px #feedb4, 0 0 4px #ffe589;
+      pointer-events: none;
+      opacity: 0.8;
+      filter: blur(0.3px);
+      transition: text-shadow 0.3s;
+    }
+    .story-btn:active {
+      transform: scale(0.99);
+    }
+    .planet-box {
+      position: absolute;
+      left: 40px;
+      bottom: 40px;
+      background: #111;
+      border-radius: 20px;
+      padding: 10px;
+      width: 320px;
+      z-index: 2;
+    }
+    .planet-box img {
+      width: 100%;
+    }
+    @media (max-width:700px) {
+      .center-box { width: 96vw; }
+      .planet-box { width: 80vw; left: 10px; }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="space-bg">
+    <canvas id="solar-canvas"></canvas>
+    <div class="center-box">
+      <h1>Let's go on a Space Adventure!!</h1>
+      <p class="subtitle">An Interactive Story</p>
+      <button class="story-btn" onclick="startAdventure('yes')">YES :)</button>
+      <button class="story-btn" onclick="startAdventure('no')">NO :(</button>
+    </div>
+    <div class="planet-box">
+      <img src="/assets/images/space-parts.png" alt="Space Parts" onerror="this.style.display='none'" />
+    </div>
+  </div>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

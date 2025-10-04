@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravi's Magical Friends - Space Adventure</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <div class="progress-bar-real">
+        <div class="progress-bar-fill" id="progressbar"></div>
+    </div>
+
+    <div class="slide active">
+        <button class="back-btn" onclick="navigateToFamily()">Back</button>
+        <div class="star-bg">
+            <span class="fancy-star fancy-star1" style="top:-50px;left:-40px;">⭐</span>
+            <span class="fancy-star fancy-star2">⭐</span>
+            <span class="fancy-star fancy-star3">⭐</span>
+            <span class="fancy-star fancy-star4">⭐</span>
+            <span class="fancy-star fancy-star5">⭐</span>
+            <span class="fancy-star fancy-star6">⭐</span>
+            <span class="little-star" style="top:32px;left:130px;">★</span>
+            <span class="little-star" style="top:82px;left:44vw;">★</span>
+            <span class="little-star" style="top:65px;left:87vw;">★</span>
+            <span class="little-star" style="top:255px;left:17vw;">★</span>
+            <span class="little-star" style="top:280px;left:83vw;">★</span>
+            <span class="little-star" style="top:68vh;left:23vw;">★</span>
+            <span class="little-star" style="top:86vh;left:28vw;">★</span>
+            <span class="little-star" style="top:89vh;left:81vw;">★</span>
+        </div>
+        <div class="pbar-top" style="position:relative;z-index:2;"></div>
+        <div class="magic-con">
+            <div class="magic-title">Ravi's Magical Friends</div>
+            <div class="magic-card orange" tabindex="0">
+                <div class="card-title">☀️ Sunny</div>
+                <div>Controls the Sun and sometimes sneezes solar flares!</div>
+            </div>
+            <div class="magic-card white" tabindex="0">
+                <div class="card-title">🛡️ Maggie</div>
+                <div>Protects Earth with her invisible magnetic shield</div>
+            </div>
+            <div class="magic-card pink" tabindex="0">
+                <div class="card-title">🌈 Aurora</div>
+                <div>Paints beautiful colorful lights across the night sky...</div>
+            </div>
+            <button class="super-btn" onclick="navigateToSun()">Start Adventure</button>
+        </div>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="Friends.js"></script>
+</body>
+</html>
